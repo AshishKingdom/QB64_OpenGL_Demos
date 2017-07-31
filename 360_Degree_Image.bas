@@ -38,6 +38,9 @@ END TYPE
 
 DIM SHARED cubeData(36) AS vertex
 
+dim shared path$
+path$ = "Resources/360 Degree Image Demo/"
+
 'I've store the cube data in a file because it would be frustrating
 'to store it in code and also wastage of time.
 'Data file contain 36 vertices along with their texture coordinates. (6 Faces,
@@ -46,7 +49,7 @@ DIM SHARED cubeData(36) AS vertex
 'triangles because OpenGL basically works on triangles.
 index = 1
 t = 0
-OPEN "object.vbo" FOR INPUT AS #1
+OPEN path$+"object.vbo" FOR INPUT AS #1
 WHILE NOT EOF(1)
     INPUT #1, tmp$
     IF t > 4 THEN t = 0: index = index + 1
@@ -111,12 +114,12 @@ Dim shared back&, front&, top&, bottom&, left&, right&
 
 print "Loading Textures..."
 
-back& = _loadimage("skybox/back.jpg")
-front& = _loadimage("skybox/front.jpg")
-bottom& = _loadimage("skybox/bottom.jpg")
-top& = _loadimage("skybox/top.jpg")
-left& = _loadimage("skybox/left.jpg")
-right& = _loadimage("skybox/right.jpg")
+back& = _loadimage(path$+"back.jpg")
+front& = _loadimage(path$+"front.jpg")
+bottom& = _loadimage(path$+"bottom.jpg")
+top& = _loadimage(path$+"top.jpg")
+left& = _loadimage(path$+"left.jpg")
+right& = _loadimage(path$+"right.jpg")
 
 print "Press Any Key To Start Demo."
 a$ = input$(1)
@@ -170,7 +173,7 @@ SUB _GL () STATIC
         aspect# = _WIDTH / _HEIGHT 'used for perspective.
         'we'll load image data in memory and convert it into texture
         'by GLH_Image_to_Texture() function (Written By Galleon).
-        texImage& = _LOADIMAGE("container2.png")
+        texImage& = _LOADIMAGE(path$+"container2.png")
         tex& = GLH_Image_to_Texture(texImage&)
         'we don't need this anymore.
         _FREEIMAGE texImage&
@@ -214,7 +217,7 @@ SUB _GL () STATIC
     'for more info, visit - https://learnopengl.com/#!Getting-started/Camera
     
 	'gluLookAt COS(clock#) * 10, COS(clock#) * 4, SIN(clock#) * 10, 0, 0, -1, 0, 1, 0
-	gluLookAt sin(clock#)*10,cos(clock#)*5,cos(clock#)*10, Front.x, Front.y, Front.z, 0,1,0
+	gluLookAt sin(clock#)*10,cos(clock#)*1,cos(clock#)*10, Front.x, Front.y, Front.z, 0,1,0
 	
 	GLH_Select_Texture back_tex&
 

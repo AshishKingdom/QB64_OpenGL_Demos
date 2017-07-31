@@ -36,6 +36,8 @@ TYPE object_positions
 END TYPE
 
 DIM SHARED cubeData(36) AS vertex
+dim shared path$
+path$ = "Resources/Simple Demo/"
 
 'I've store the cube data in a file because it would be frustrating
 'to store it in code and also wastage of time.
@@ -45,7 +47,7 @@ DIM SHARED cubeData(36) AS vertex
 'triangles because OpenGL basically works on triangles.
 index = 1
 t = 0
-OPEN "object.vbo" FOR INPUT AS #1
+OPEN path$+"object.vbo" FOR INPUT AS #1
 WHILE NOT EOF(1)
     INPUT #1, tmp$
     IF t > 4 THEN t = 0: index = index + 1
@@ -135,7 +137,7 @@ SUB _GL () STATIC
         aspect# = _WIDTH / _HEIGHT 'used for perspective.
         'we'll load image data in memory and convert it into texture
         'by GLH_Image_to_Texture() function (Written By Galleon).
-        texImage& = _LOADIMAGE("container.jpg")
+        texImage& = _LOADIMAGE(path$+"container.jpg")
         tex& = GLH_Image_to_Texture(texImage&)
         'we don't need this anymore.
         _FREEIMAGE texImage&

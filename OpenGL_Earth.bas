@@ -10,7 +10,7 @@ SCREEN _NEWIMAGE(600, 600, 32)
 DO: LOOP UNTIL _SCREENEXISTS
 
 'c code
-DECLARE LIBRARY "OpenGL_3D_Earth/earth_helper"
+DECLARE LIBRARY "QB64_OpenGL_Demos/earth_helper"
     SUB initEarth ()
     SUB drawEarth ()
 END DECLARE
@@ -30,13 +30,16 @@ REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
 
 DIM SHARED glAllow AS _BYTE, walk
 
+dim shared path$
+path$ = "Resources/OpenGL 3D Earth/"
+
 'defining textures
 DIM SHARED earth_texture&
 
 walk = 19
 
 'textures are from http://planetpixelemporium.com/planets.html
-earth_texture& = _LOADIMAGE("textures/earthmap1k.jpg")
+earth_texture& = _LOADIMAGE(path$+"earthmap1k.jpg")
 
 glAllow = -1
 

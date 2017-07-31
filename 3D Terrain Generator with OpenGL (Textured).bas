@@ -18,7 +18,10 @@ DIM SHARED DONT_USE_GLH_COL_RGBA(1 TO 4) AS SINGLE
 
 REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
 
-tex& = _loadimage("mountain.jpg")
+dim shared path$
+path$ = "Resources/3D Terrain Generator (Textured)/"
+
+tex& = _loadimage(path$+"mountain.jpg")
 
 
 width = _width
@@ -64,11 +67,15 @@ SUB _GL STATIC
 	
 	rotateX = rotateX + .1
 	rotateZ = rotateZ + .25
-	texture& = GLH_Image_to_Texture(tex&)
-	GLH_Select_Texture texture&
+	
+	if not glInit then
+	    texture& = GLH_Image_to_Texture(tex&)
+	end if
+	
+    GLH_Select_Texture texture&
 	_glTexParameteri _GL_TEXTURE_2D, _GL_TEXTURE_MAG_FILTER, _GL_LINEAR 'seems these need to be respecified
     _glTexParameteri _GL_TEXTURE_2D, _GL_TEXTURE_MIN_FILTER, _GL_LINEAR
-    
+	
 	FOR y = 0 TO rows - 1
         _glBegin _GL_TRIANGLE_STRIP
         FOR x = 0 TO cols - 1

@@ -24,9 +24,12 @@ DIM SHARED DONT_USE_GLH_COL_RGBA(1 TO 4) AS SINGLE
 
 REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
 
+dim shared path$
+path$ = "Resources/3D Textured Cube/"
+
 'Define a 3D cube (6 faces, each made by 2 triangle composed of 3 vertices)
 f = freefile
-open "cube.dat" for input as #f
+open path$+"cube.dat" for input as #f
 line input #1, comment$ 'skip comment
 line input #1, comment$ 'skip comment
 for i = 1 to ubound(cube)
@@ -39,8 +42,8 @@ SCREEN _NEWIMAGE(600, 600, 32)
 
 
 
-background& = _LOADIMAGE("background.jpg")
-texture& = _LOADIMAGE("texture.jpg")
+background& = _LOADIMAGE(path$+"background.jpg")
+texture& = _LOADIMAGE(path$+"texture.jpg")
 
 _PUTIMAGE , background&
 glAllow = -1

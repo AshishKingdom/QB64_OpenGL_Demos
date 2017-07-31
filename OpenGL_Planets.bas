@@ -36,6 +36,9 @@ END TYPE
 
 REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
 
+dim shared path$
+path$ = "Resources/OpenGL 3D Planets/"
+
 DIM SHARED glAllow AS _BYTE, walkZ, walkX, walkY
 DIM SHARED rotX, rotY, rotZ
 'defining textures
@@ -47,15 +50,15 @@ walkZ = 30
 
 'textures are from http://planetpixelemporium.com/planets.html
 
-mercury_texture& = _LOADIMAGE("textures/mercurymap.jpg")
-venus_texture& = _LOADIMAGE("textures/venusmap.jpg")
-earth_texture& = _LOADIMAGE("textures/earthmap1k.jpg")
-mars_texture& = _LOADIMAGE("textures/mars_1k_color.jpg")
-jupiter_texture& = _LOADIMAGE("textures/jupitermap.jpg")
-saturn_texture& = _LOADIMAGE("textures/saturnmap.jpg")
-uranus_texture& = _LOADIMAGE("textures/uranusmap.jpg")
-neptune_texture& = _LOADIMAGE("textures/neptunemap.jpg")
-pluto_texture& = _LOADIMAGE("textures/plutomap1k.jpg")
+mercury_texture& = _LOADIMAGE(path$+"mercurymap.jpg")
+venus_texture& = _LOADIMAGE(path$+"venusmap.jpg")
+earth_texture& = _LOADIMAGE(path$+"earthmap1k.jpg")
+mars_texture& = _LOADIMAGE(path$+"mars_1k_color.jpg")
+jupiter_texture& = _LOADIMAGE(path$+"jupitermap.jpg")
+saturn_texture& = _LOADIMAGE(path$+"saturnmap.jpg")
+uranus_texture& = _LOADIMAGE(path$+"uranusmap.jpg")
+neptune_texture& = _LOADIMAGE(path$+"neptunemap.jpg")
+pluto_texture& = _LOADIMAGE(path$+"plutomap1k.jpg")
 
 DIM SHARED allowLight AS _BYTE
 allowLight = -1
@@ -77,7 +80,7 @@ PRINT "Press 'p' to rotate Z-Axis clockwise"
 PRINT "*********** Hit A Key ***************"
 SLEEP
 glAllow = -1
-stars& = _LOADIMAGE("textures/outer-space-texture.jpg")
+stars& = _LOADIMAGE(path$+"outer-space-texture.jpg")
 printRenderingStatus
 
 

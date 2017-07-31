@@ -1,7 +1,7 @@
 'Simple Textured Flag By Ashish
 '
 '
-
+_TITLE "3D Flag"
 SCREEN _NEWIMAGE(800, 600, 32)
 
 DIM SHARED glAllow AS _BYTE, wired
@@ -22,6 +22,9 @@ END TYPE
 
 'Used by GLH RGB/etc helper functions
 REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
+
+dim shared path$
+path$ = "Resources/3D Flag/"
 
 
 glAllow = -1
@@ -47,7 +50,7 @@ SUB _GL () STATIC
         glSetup = -1
         _glViewport 0, 0, _WIDTH, _HEIGHT
         ang = 0
-        v& = _LOADIMAGE("indian-flag.png")
+        v& = _LOADIMAGE(path$+"indian-flag.png")
         flag_texture = GLH_Image_to_Texture(v&)
         _FREEIMAGE v&
     END IF
