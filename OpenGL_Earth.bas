@@ -10,7 +10,7 @@ SCREEN _NEWIMAGE(600, 600, 32)
 DO: LOOP UNTIL _SCREENEXISTS
 
 'c code
-DECLARE LIBRARY "QB64_OpenGL_Demos/earth_helper"
+DECLARE LIBRARY "./earth_helper"
     SUB initEarth ()
     SUB drawEarth ()
 END DECLARE

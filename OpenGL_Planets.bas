@@ -18,7 +18,7 @@ SCREEN _NEWIMAGE(700, 700, 32)
 DO: LOOP UNTIL _SCREENEXISTS
 
 'c code
-DECLARE LIBRARY "OpenGL_3D_Planets/planets_helper"
+DECLARE LIBRARY "./planets_helper"
     SUB initPlanet ()
     SUB drawPlanet ()
 END DECLARE
