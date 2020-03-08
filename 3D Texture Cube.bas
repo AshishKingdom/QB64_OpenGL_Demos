@@ -24,26 +24,26 @@ DIM SHARED DONT_USE_GLH_COL_RGBA(1 TO 4) AS SINGLE
 
 REDIM SHARED DONT_USE_GLH_Handle(1000) AS DONT_USE_GLH_Handle_TYPE
 
-dim shared path$
+DIM SHARED path$
 path$ = "Resources/3D Textured Cube/"
 
 'Define a 3D cube (6 faces, each made by 2 triangle composed of 3 vertices)
-f = freefile
-open path$+"cube.dat" for input as #f
-line input #1, comment$ 'skip comment
-line input #1, comment$ 'skip comment
-for i = 1 to ubound(cube)
-    input #1, cube(i)
-next
-close #f
+f = FREEFILE
+OPEN path$ + "cube.dat" FOR INPUT AS #f
+LINE INPUT #1, comment$ 'skip comment
+LINE INPUT #1, comment$ 'skip comment
+FOR i = 1 TO UBOUND(cube)
+    INPUT #1, cube(i)
+NEXT
+CLOSE #f
 
 
 SCREEN _NEWIMAGE(600, 600, 32)
 
 
 
-background& = _LOADIMAGE(path$+"background.jpg")
-texture& = _LOADIMAGE(path$+"texture.jpg")
+background& = _LOADIMAGE(path$ + "background.jpg")
+texture& = _LOADIMAGE(path$ + "texture.jpg")
 
 _PUTIMAGE , background&
 glAllow = -1
@@ -51,35 +51,36 @@ DO
     WHILE _MOUSEINPUT: WEND
     mouseX = _MOUSEX
     mouseY = _MOUSEY
-	k& = _keyhit
-	if k& = asc("w") then walk = walk + 1.5
-	if k& = asc("s") then walk = walk - 1.5
-	_limit 30
+    k& = _KEYHIT
+    IF k& = ASC("w") THEN walk = walk + 1.5
+    IF k& = ASC("s") THEN walk = walk - 1.5
+    _LIMIT 30
 LOOP
 
 
 SUB _GL STATIC
     IF NOT glAllow THEN EXIT SUB
-	
+
     clock# = clock# + .01
-	
-	'enable Z-Buffer read/write test
+
+    'enable Z-Buffer read/write test
     _glEnable _GL_DEPTH_TEST
+
     _glDepthMask _GL_TRUE
 
     _glClearDepth 1.F
-	
-	'configure the viewport
+    
+    'configure the viewport
     _glViewport 0, 0, _WIDTH, _HEIGHT
     _glMatrixMode _GL_PROJECTION
     _glLoadIdentity
-	
-	'setup perspective
+    
+    'setup perspective
     ratio## = _WIDTH / _HEIGHT
     _glFrustum -ratio##, ratio##, -1.F, 1.F, 1.F, 500.F
 
     _glEnable _GL_TEXTURE_2D
-    if textureInit = 0 then tex& = GLH_Image_to_Texture(texture&) : textureInit = -1
+    IF textureInit = 0 THEN tex& = GLH_Image_to_Texture(texture&): textureInit = -1
     GLH_Select_Texture tex&
 
     _glTexParameteri _GL_TEXTURE_2D, _GL_TEXTURE_MAG_FILTER, _GL_LINEAR 'seems these need to be respecified
@@ -95,9 +96,9 @@ SUB _GL STATIC
     y = -mouseY * 200.F / _HEIGHT + 100.F
 
     _glTranslatef x, y, walk
-	
-	walk = walk
-	
+    
+    walk = walk
+    
 
     _glRotatef clock# * 50, 1, 0, 0
     _glRotatef clock# * 30, 0, 1, 0
