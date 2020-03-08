@@ -1,3 +1,4 @@
+'@Author:Ashish Kushwaha
 'Just another demo for OpenGL
 'I've commented this code to explain
 'some OpenGL stuffs (Well.. I'm not a good teacher)

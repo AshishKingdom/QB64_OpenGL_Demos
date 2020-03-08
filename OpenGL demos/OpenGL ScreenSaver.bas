@@ -1,3 +1,4 @@
+'@Author:Petr Preclik
 'Open Gl Lines write Petr
 _FULLSCREEN
 num = 100 'if sets other number, then set _limit on line 62 too.

@@ -1,3 +1,4 @@
+'@Author:Ashish Kushwaha
 _TITLE "Spot Lights"
 SCREEN _NEWIMAGE(800, 600, 32)
 DO: LOOP UNTIL _SCREENEXISTS

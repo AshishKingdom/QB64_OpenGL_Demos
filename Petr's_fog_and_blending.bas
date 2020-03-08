@@ -1,4 +1,4 @@
-
+'@Author:Petr Preclik
 TYPE DONT_USE_GLH_Handle_TYPE
     in_use AS _BYTE
     handle AS LONG

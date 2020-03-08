@@ -1,3 +1,4 @@
+'MODifined @Author:Petr Preclik
 'OpenGL Lights & Material By Ashish
 
 _TITLE "OpenGL Lights & Material"

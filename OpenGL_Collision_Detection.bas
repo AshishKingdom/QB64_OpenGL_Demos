@@ -1,3 +1,4 @@
+'@Author:Ashish Kushwaha
 _TITLE "Move cursor on shape(s)."
 randomize timer
 SCREEN _NEWIMAGE(600, 600, 32)

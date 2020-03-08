@@ -1,4 +1,4 @@
-
+'@Author:Ashish Kushwaha
 _TITLE "3D Particles"
 SCREEN _NEWIMAGE(800, 600, 32)
 

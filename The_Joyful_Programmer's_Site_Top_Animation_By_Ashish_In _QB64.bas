@@ -1,3 +1,4 @@
+'@Author:Ashish Kushwaha
 _TITLE "The Joyful Programmer's Site Top Animation By Ashish In QB64"
 
 SCREEN _NEWIMAGE(800, 400, 32)

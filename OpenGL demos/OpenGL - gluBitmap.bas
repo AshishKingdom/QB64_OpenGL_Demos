@@ -1,3 +1,4 @@
+'@Author:Petr Preclik
 DO: _LIMIT 25: LOOP
 SUB _GL
 

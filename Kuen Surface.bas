@@ -1,3 +1,4 @@
+'@Author:Ashish Kushwaha
 _TITLE "Kuen Surface"
 'http://paulbourke.net/geometry/kuen/
 SCREEN _NEWIMAGE(700, 700, 32)

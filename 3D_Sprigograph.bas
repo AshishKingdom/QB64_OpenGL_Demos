@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'Coded By Ashish on 7 March, 2018
 
 _TITLE "3D Spirograph"
