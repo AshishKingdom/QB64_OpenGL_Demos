@@ -226,6 +226,7 @@ SUB _GL () STATIC
     'https://learnopengl.com/#!Getting-started/Textures
     'It is better explain on the above ^^ link. :)
 
+	_glDepthMask _GL_FALSE
     _glTexParameteri _GL_TEXTURE_2D, _GL_TEXTURE_MIN_FILTER, _GL_NEAREST
     _glTexParameteri _GL_TEXTURE_2D, _GL_TEXTURE_MAG_FILTER, _GL_LINEAR
 	
@@ -323,6 +324,7 @@ SUB _GL () STATIC
 	_glVertex3f -10,-10,10
 	_glEnd
 	
+	_glDepthMask _GL_TRUE
     'select our texture.
     GLH_Select_Texture tex&
 	
