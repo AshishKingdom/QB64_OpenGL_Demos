@@ -9,11 +9,11 @@ TYPE vec3
     y AS SINGLE
     z AS SINGLE
 END TYPE
-DECLARE LIBRARY
+DECLARE LIBRARY 'used for camera.
     SUB gluLookAt (BYVAL eyeX#, BYVAL eyeY#, BYVAL eyeZ#, BYVAL centerX#, BYVAL centerY#, BYVAL centerZ#, BYVAL upX#, BYVAL upY#, BYVAL upZ#)
 END DECLARE
 
-DIM SHARED glAllow AS _BYTE, knot_type, ma
+DIM SHARED glAllow AS _BYTE, knot_type, ma 'knot_type store the type knot being drawn. ma store percentage of knot which is being drawn.
 knot_type = 1
 glAllow = -1
 
@@ -22,7 +22,7 @@ DO
     IF k& = ASC(" ") THEN
         knot_type = knot_type + 1
         ma = 0
-        IF knot_type > 7 THEN knot_type = 1
+        IF knot_type > 7 THEN knot_type = 1 '7 knots are there.
     END IF
     _LIMIT 60
 LOOP
@@ -39,9 +39,9 @@ SUB _GL ()
         _glViewport 0, 0, _WIDTH, _HEIGHT
     END IF
     
-    _glEnable _GL_DEPTH_TEST
-    _glDepthMask _GL_TRUE
+    _glEnable _GL_DEPTH_TEST 'We are doing 3D. This enables Z-Buffer.
     
+	'set perspective configuration
     _glMatrixMode _GL_PROJECTION
     _glLoadIdentity
     _gluPerspective 45.0, aspect#, 1.0, 100.0
@@ -50,14 +50,15 @@ SUB _GL ()
     _glLoadIdentity
     ' gluLookAt 0,0,-1,0,0,0,0,1,0
     
-    _glColor3f 1, 1, 1
-    _glTranslatef 0, 0, 0
-    _glRotatef clock * 90, 0, 1, 0
-    _glLineWidth 3.0
+    _glColor3f 1, 1, 1 'set color
+    _glTranslatef 0, 0, 0 'not require. becoz, origin is already at 0,0,0
+    _glRotatef clock * 90, 0, 1, 0 'rotation along Y-axis
+    _glLineWidth 3.0 'width of the line.
     
     SELECT CASE knot_type
-        CASE 7
+        CASE 7 'equations are knots are taken from paulbourke site
             _glBegin _GL_LINE_STRIP
+			'for animation, value of ma is gradually increased till a certain constant. In this case, it is pi.
             FOR beta = 0 TO ma STEP .005
                 r = .3 + .6 * SIN(6 * beta)
                 theta = 2 * beta
@@ -66,10 +67,11 @@ SUB _GL ()
                 y = r * COS(phi) * SIN(theta)
                 z = r * SIN(phi)
                 _glColor3f map(x, -1, 1, 0, 1), map(y, -1, 1, 0, 1), map(z, -1, 1, 0, 1)
-                _glVertex3f x, y, z
+                _glVertex3f x, y, z 'draws it.
             NEXT
             _glEnd
             IF ma <= _PI THEN ma = ma + .005
+			'others are made to be rendered in the same way.
         CASE 6
             _glBegin _GL_LINE_STRIP
             FOR beta = 0 TO ma STEP .005
