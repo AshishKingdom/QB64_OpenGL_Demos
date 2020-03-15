@@ -9,17 +9,17 @@ TYPE vector
 END TYPE
 
 TYPE particle
-    pos AS vector
-    vel AS vector
-    life AS INTEGER
-    dead AS INTEGER
+    pos AS vector 'position of particle
+    vel AS vector 'velocity of particle
+    life AS INTEGER 'life of a particle
+    dead AS INTEGER 'when life>dead, then the particle is regenerated again with different configuration.
 END TYPE
 
 DIM SHARED glAllow AS _BYTE
 
 DIM SHARED Particles(10000) AS particle
 
-FOR i = 0 TO UBOUND(particles)
+FOR i = 0 TO UBOUND(particles) 'initialization
     Particles(i).pos.x = 0
     Particles(i).pos.y = 0
     Particles(i).pos.z = 0
@@ -41,6 +41,7 @@ SUB _GL () STATIC
 
     IF NOT glAllow THEN EXIT SUB
 
+    'rotation in all axis (X, Y, Z)
     _glRotatef xangle, 1, 0, 0
     _glRotatef yangle, 0, 1, 0
     _glRotatef zangle, 0, 0, 1
@@ -53,19 +54,19 @@ SUB _GL () STATIC
 
     FOR i = 0 TO mx
 
-        c## = map(Particles(i).life, 0, Particles(i).dead, 1, 0.25)
+        c## = map(Particles(i).life, 0, Particles(i).dead, 1, 0.25) 'as the time runs, the particles will gradually fade away.
 
         _glColor3f c##, c##, c##
 
         _glVertex3d Particles(i).pos.x, Particles(i).pos.y, Particles(i).pos.z
 
-        Particles(i).pos.x = Particles(i).pos.x + Particles(i).vel.x
+        Particles(i).pos.x = Particles(i).pos.x + Particles(i).vel.x 'update position
         Particles(i).pos.y = Particles(i).pos.y + Particles(i).vel.y
         Particles(i).pos.z = Particles(i).pos.z + Particles(i).vel.z
 
-        Particles(i).life = Particles(i).life + 1
+        Particles(i).life = Particles(i).life + 1 
 
-        IF Particles(i).life > Particles(i).dead THEN
+        IF Particles(i).life > Particles(i).dead THEN 'regenerate particles again
 
             Particles(i).life = 0
             Particles(i).pos.x = 0
